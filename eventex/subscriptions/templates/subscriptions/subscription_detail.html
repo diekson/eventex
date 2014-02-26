@@ -4,9 +4,9 @@
     <p>sua inscrição foi realizada em <b>{{ subscription.created_at|date:"d/m/Y" }}</b>.</p>
     <p>Em breve, estaremos entrando em contato pelo
         {% if subscription.phone %}
-            telefone <b>{{ subscription.phone }}</b>
+            telefone <b>{{ subscription.phone }}</b>.
         {% else %}
-            email <b>{{ subscription.email }}</b>
+            email <b>{{ subscription.email }}</b>.
         {% endif %}
     </p>
 {% endblock content %}

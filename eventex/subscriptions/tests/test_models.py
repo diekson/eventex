@@ -23,9 +23,13 @@ class SubscriptionTest(TestCase):
         self.obj.save()
         self.assertIsInstance(self.obj.created_at,datetime)
         
-    def test_eunicode(self):
+    def test_unicode(self):
         'Name must be unicode'
         self.assertEqual(u'Diekson Scardine',unicode(self.obj))
+        
+    def test_paid_default_value_is_False(self):
+        'By default paid must be False.'
+        self.assertEqual(False, self.obj.paid)
 
 
 
