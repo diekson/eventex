@@ -4,13 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 from eventex.core.managers import KindContactManager, PeriodManager
 
 class Speaker(models.Model):
-    name = models.CharField(_('Nome'), max_length=255)
-    slug = models.SlugField(_('Slug'))
-    url = models.URLField(_('Url'))
+    name        = models.CharField(_('Nome'), max_length=255)
+    slug        = models.SlugField(_('Slug'))
+    url         = models.URLField(_('Url'))
     description = models.TextField(_(u'Descrição'), blank=True)
     
     class Meta:
-        verbose_name = _('palestrante')
+        verbose_name        = _('palestrante')
         verbose_name_plural = _('palestrantes')
     
     def __unicode__(self):
@@ -39,16 +39,19 @@ class Contact(models.Model):
     def __unicode__(self):
         return self.value
 
-class Talk(models.Model):
-    title   = models.CharField(_('Título'),max_length=200)
-    description = models.TextField(_('Descrição'))
-    start_time = models.TimeField(_('Horário'), blank=True)
-    speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrantes'))
+
+
     
-    objects = PeriodManager()
+class Talk(models.Model):
+    title       = models.CharField(_('Título'),max_length=200)
+    description = models.TextField(_('Descrição'))
+    start_time  = models.TimeField(_('Horário'), blank=True)
+    speakers    = models.ManyToManyField('Speaker', verbose_name=_('palestrantes'))
+    
+    objects     = PeriodManager()
     
     class Meta:
-        verbose_name = _('palestra')
+        verbose_name        = _('palestra')
         verbose_name_plural = _('palestras')
     
     def __unicode__(self):
@@ -58,3 +61,9 @@ class Talk(models.Model):
         #TODO: Use reverse.
         
         return '/palestras/%d/' % self.pk
+
+class Course(Talk):
+    slots = models.IntegerField(_('vagas'))
+    notes = models.TextField(_(u'observações'))
+    
+    objects     = PeriodManager()
