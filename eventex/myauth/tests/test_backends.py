@@ -3,9 +3,9 @@ from django.test.utils import override_settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from eventex.myauth.backends import EmailBackend
-from unittest import skip
+#from unittest import skip
 
-@skip
+#@skip
 class EmailBackendTest(TestCase):
     def setUp(self):
         UserModel = get_user_model()
@@ -36,7 +36,7 @@ class EmailBackendTest(TestCase):
     def test_get_user(self):
         self.assertIsNotNone(self.backend.get_user(1))
  
-@skip       
+#@skip       
 class MultipleEmailsTest(TestCase):
     def setUp(self):
         UserModel = get_user_model()
@@ -56,7 +56,7 @@ class MultipleEmailsTest(TestCase):
                 password='senha',)  
         self.assertIsNone(user)
 
-@skip
+#@skip
 @override_settings(AUTHENTICATION_BACKENDS=('eventex.myauth.backends.EmailBackend',))
 class FunctionalEmailBackendTest(TestCase):
     def setUp(self):
